@@ -1,15 +1,10 @@
-import { Config } from "drizzle-kit";
-
-// Assuming you have the Vercel PostgreSQL details in your environment variables
-const POSTGRES_URL = process.env.POSTGRES0_URL;
+import type { Config } from "drizzle-kit";
 
 export default {
   schema: "./src/server/db/schema.ts",
   out: "./drizzle",
   driver: "pg",
   dbCredentials: {
-    connectionString: POSTGRES_URL ?? "",
+    connectionString: process.env.DB_MIGRATE_URL ?? "",
   },
-} as Config;
-
-
+} satisfies Config;
