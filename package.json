@@ -16,6 +16,7 @@
     "@trpc/client": "^10.42.0",
     "@trpc/react-query": "^10.42.0",
     "@trpc/server": "^10.42.0",
+    "clsx": "^2.0.0",
     "next": "13.5.6",
     "next-auth": "^4.24.3",
     "react": "^18",
