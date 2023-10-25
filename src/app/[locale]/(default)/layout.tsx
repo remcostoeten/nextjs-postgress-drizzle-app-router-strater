@@ -5,18 +5,34 @@ import type { FC, PropsWithChildren } from "react";
 import "@/styles/globals.scss";
 import { Header } from "../_components/header";
 import { PageLayout } from "../_components/page-layout";
-import type { LocaleRouteParams } from "../types";
+import { metadata } from "../../../../config/metadata";
+import { LocaleRouteParams } from "@/types/types";
 
 export async function generateMetadata({
   params,
 }: LocaleRouteParams): Promise<Metadata> {
   const t = await getTranslator(params.locale, "home");
-  return {
+
+  const mergedMetadata: Metadata = {
+    ...metadata, // Include the global metadata
     title: {
       default: t("meta.title"),
       template: `%s | ${t("meta.title")}`,
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": 1,
+        "max-image-preview": "large",
+        "max-snippet": 150,
+      },
+    },
   };
+
+  return mergedMetadata;
 }
 
 type DefaultRootLayoutProps = PropsWithChildren<LocaleRouteParams>;

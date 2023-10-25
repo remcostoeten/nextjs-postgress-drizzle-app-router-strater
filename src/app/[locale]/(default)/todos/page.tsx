@@ -5,10 +5,10 @@ import type { FC } from "react";
 
 import { AuthRequired } from "@/components/(drizzlestarter)/auth-required";
 import { HomeLink } from "@/components/(drizzlestarter)/home-link";
-import type { LocaleRouteParams } from "../../types";
 import { ToDoInput } from "./_components/todo-input";
 import { ToDoList } from "./_components/todo-list";
 import { ToDoSigninFallback } from "./_components/todo-signin-fallback";
+import { LocaleRouteParams } from "@/types/types";
 
 export async function generateMetadata({
   params,

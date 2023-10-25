@@ -4,7 +4,7 @@ import { getTranslator } from "next-intl/server";
 import type { FC } from "react";
 
 import { TextLink } from "@/components/(drizzlestarter)/text-link";
-import type { LocaleRouteParams } from "../types";
+import { LocaleRouteParams } from "@/types/types";
 
 export async function generateMetadata({
   params,

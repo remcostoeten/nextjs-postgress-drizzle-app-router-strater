@@ -2,7 +2,6 @@
 import { FC } from 'react';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
-import { Button } from "@c/ui/button"
 import {
     Popover,
     PopoverContent,
@@ -14,7 +13,6 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescri
 import { Input } from '../ui/input';
 
 const TaskHeader: FC = () => {
-
     return (
         <div className="flex flex-col  gap-4">
             <h2 className="text-xl font-bold">To-Do</h2>
