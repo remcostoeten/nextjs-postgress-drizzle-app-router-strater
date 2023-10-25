@@ -2,7 +2,7 @@ import type { getProviders } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import type { FC } from "react";
 
-import { HomeLink } from "@/components/home-link";
+import { HomeLink } from "@/components/(drizzlestarter)/home-link";
 import { ProviderButton } from "./provider-button";
 
 type SignInPageContentProps = {

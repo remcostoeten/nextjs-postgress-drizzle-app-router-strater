@@ -3,8 +3,8 @@ import { useTranslations } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import type { FC } from "react";
 
-import { AuthRequired } from "@/components/auth-required";
-import { HomeLink } from "@/components/home-link";
+import { AuthRequired } from "@/components/(drizzlestarter)/auth-required";
+import { HomeLink } from "@/components/(drizzlestarter)/home-link";
 import type { LocaleRouteParams } from "../../types";
 import { ToDoInput } from "./_components/todo-input";
 import { ToDoList } from "./_components/todo-list";

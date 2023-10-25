@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import type { FC } from "react";
 
-import { TextLink } from "@/components/text-link";
+import { TextLink } from "@/components/(drizzlestarter)/text-link";
 import type { LocaleRouteParams } from "../types";
 
 export async function generateMetadata({

@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import type { FC } from "react";
 
-import { SigninLink } from "@/components/signin-link";
+import { SigninLink } from "@/components/(drizzlestarter)/signin-link";
 
 export const ToDoSigninFallback: FC = () => {
   const t = useTranslations("todos");

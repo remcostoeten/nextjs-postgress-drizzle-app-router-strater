@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import { useRef, type ElementRef, type FC, type HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 
-import { ActionButton } from "@/components/action-button";
 import { addToDoInputSchema, type AddToDoInputData } from "@/schemas/todos";
 import { useAddToDo } from "../_hooks/use-add-todo";
+import { ActionButton } from "@/components/(drizzlestarter)/action-button";
 
 export const ToDoInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
   className,

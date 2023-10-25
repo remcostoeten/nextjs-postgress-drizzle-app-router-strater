@@ -1,11 +1,11 @@
 "use client";
 
+import { ActionButton } from "@/components/(drizzlestarter)/action-button";
 import { signIn, type ClientSafeProvider } from "next-auth/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import type { FC } from "react";
 
-import { ActionButton } from "@/components/action-button";
 
 type ProviderButtonProps = {
   provider: ClientSafeProvider;
