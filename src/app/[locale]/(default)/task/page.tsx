@@ -1,6 +1,6 @@
-import NewTaskUi from "@/components/task/NewTaskUi";
+import TaskHeader from "@/components/task/TaskHeader";
 import React from "react";
 
 export default function page() {
-  return <><NewTaskUi/></>;
+  return <><TaskHeader/></>;
 }
