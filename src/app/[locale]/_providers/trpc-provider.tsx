@@ -4,8 +4,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type FC, type PropsWithChildren } from "react";
 import superjson from "superjson";
 
-import { createLink } from "../../api/trpc/[trpc]/link";
 import { trpc } from "@/trpc";
+import { createLink } from "../../api/trpc/[trpc]/link";
 
 export const TrpcProvider: FC<PropsWithChildren> = ({ children }) => {
   const [queryClient] = useState(() => new QueryClient());

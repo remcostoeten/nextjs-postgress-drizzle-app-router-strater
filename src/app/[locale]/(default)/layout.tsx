@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
 import type { FC, PropsWithChildren } from "react";
 
-import "@/globals.css";
+import "@/styles/globals.scss";
 import { Header } from "../_components/header";
 import { PageLayout } from "../_components/page-layout";
 import type { LocaleRouteParams } from "../types";

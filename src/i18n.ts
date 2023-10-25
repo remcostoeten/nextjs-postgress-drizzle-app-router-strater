@@ -5,4 +5,3 @@ const localePathPattern = /^\/(?<locale>[^\/\s]+)/;
 
 export const getLocale = (pathname: string) =>
   localePathPattern.exec(pathname)?.groups?.locale;
- 

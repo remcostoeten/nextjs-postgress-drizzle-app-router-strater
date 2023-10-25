@@ -36,6 +36,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.46.2",
+    "sass": "^1.69.4",
     "superjson": "1.13.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
