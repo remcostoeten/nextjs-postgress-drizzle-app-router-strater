@@ -75,10 +75,6 @@ export const verificationTokens = pgTable(
 
 export type VerificationToken = InferModel<typeof verificationTokens>;
 
-/*
- * Application tables
- */
-
 export const todos = pgTable("todo", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
@@ -89,6 +85,29 @@ export const todos = pgTable("todo", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
 });
+
+export const tasks = pgTable("task", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  date: timestamp("date", { mode: "date" }).notNull(),
+  notifications: integer("notifications").notNull(),
+  tag: text("tag"),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("createdAt", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export const tasksRelations = relations(tasks, ({ one }) => ({
+  user: one(users, {
+    fields: [tasks.userId],
+    references: [users.id],
+  }),
+}));
+
+export type Task = InferModel<typeof tasks>;
 
 export const todosRelations = relations(todos, ({ one }) => ({
   user: one(users, {

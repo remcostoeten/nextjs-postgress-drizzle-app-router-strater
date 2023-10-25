@@ -41,5 +41,24 @@
       "loading": "Loading todos...",
       "createdDate": "Created on {createdDate, date, ::yyyyMMddHHmmss}"
     }
+  },
+  "tasks": {
+    "meta": {
+      "title": "Your Tasks",
+      "description": "List of your personal tasks"
+    },
+    "heading": "Your Tasks",
+    "signIn": "Please <link>sign in</link> to view your tasks.",
+    "input": {
+      "titlePlaceholder": "Enter a title",
+      "datePlaceholder": "Enter a date",
+      "notificationsPlaceholder": "Enter number of notifications",
+      "tagPlaceholder": "Enter a tag (optional)",
+      "submitButtonText": "Add to list"
+    },
+    "list": {
+      "loading": "Loading tasks...",
+      "createdDate": "Created on {createdDate, date, ::yyyyMMddHHmmss}"
+    }
   }
 }
