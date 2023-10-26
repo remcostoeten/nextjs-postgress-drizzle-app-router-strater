@@ -21,7 +21,7 @@ const editTaskInputSchema = z.object({
     taskId: z.number(),
     title: z.string().optional(),
     date: z.string().optional(),
-    notifications: z.array(z.string()).optional(),
+    weight: z.array(z.string()).optional(),
     tag: z.string().optional(),
     isCompleted: z.boolean().optional(),
 });
@@ -42,7 +42,7 @@ export const tasksRouter = router({
                 .values({
                     title: input.title,
                     date: new Date(input.date),
-                    notifications: input.notifications,
+                    weight: input.weight,
                     tag: input.tag,
                     userId: session.user.id,
                     isCompleted: input.isCompleted ?? false,

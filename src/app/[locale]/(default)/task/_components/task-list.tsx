@@ -10,23 +10,13 @@ import {
 } from "@/components/ui/popover";
 import { SkeletonFourBarsWSpinner } from "@/styles/components/loaders/MiniSpinner";
 import { trpc } from "@/trpc";
+import { TaskType } from "@/types/types";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Alarm, CalendarToday, CheckCircleOutline, Delete, Edit, Person } from "@mui/icons-material";
 import clsx from "clsx";
 import type { FC, HTMLAttributes } from "react";
 import { useState } from "react";
 import { Toaster, toast } from 'sonner';
-
-type TaskType = {
-  id?: number;
-  title?: string;
-  date?: Date;
-  notifications?: number;
-  tag?: string | null;
-  createdAt?: Date;
-  userId?: string;
-  isCompleted?: boolean;
-};
 
 export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
   const { data: tasks, isInitialLoading } = trpc.tasks.list.useQuery();
@@ -91,14 +81,13 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
         toast.success('Task edited successfully');
 
       },
-      onError: (err) => {
-        console.error(err);
+      onError: () => {
         toast.error('Error editing task');
       },
     });
   };
 
-  if (!isInitialLoading) {
+  if (isInitialLoading) {
     return (
       <SkeletonFourBarsWSpinner />
     );
@@ -130,7 +119,7 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
                 <CalendarToday fontSize="small" />
                 <span>{task.date?.toLocaleDateString()}</span>
                 <Alarm fontSize="small" />
-                <span>{task.notifications}</span>
+                <span>{task.weight}</span>
                 <Person fontSize="small" />
                 {task.tag && <span className="bg-purple-500 text-white px-2 py-1 rounded-md">
                   {task.tag}

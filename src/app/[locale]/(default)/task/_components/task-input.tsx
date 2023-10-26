@@ -73,12 +73,12 @@ export const TaskInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
         />
       </div>
       <div className="flex flex-col gap-1 it">
-        <Label htmlFor="notifications">Notifications</Label>
+        <Label htmlFor="weight">Weight</Label>
         <Input
-          id="notifications"
+          id="weight"
           type="number"
           className="col-span-2 h-8"
-          {...register("notifications")}
+          {...register("weight")}
         />
       </div>
       <div className="flex flex-col gap-1 it">

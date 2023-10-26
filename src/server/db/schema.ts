@@ -90,8 +90,8 @@ export const todos = pgTable("todo", {
 export const tasks = pgTable("task", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  date: timestamp("date", { mode: "date" }).notNull(),
-  notifications: integer("notifications").notNull(),
+  date: timestamp("date", { mode: "date" }),
+  weight: integer("weights"),
   tag: text("tag"),
   userId: text("userId")
     .notNull()
@@ -99,7 +99,7 @@ export const tasks = pgTable("task", {
   createdAt: timestamp("createdAt", { withTimezone: true })
     .notNull()
     .defaultNow(),
-  isCompleted: boolean("isCompleted").notNull().default(false), 
+  isCompleted: boolean("isCompleted").notNull().default(false),
 });
 
 export const tasksRelations = relations(tasks, ({ one }) => ({

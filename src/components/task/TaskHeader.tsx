@@ -7,10 +7,8 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@c/ui/popover"
-import { Label } from '../ui/label';
 import { Separator } from '../ui/separator';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '../ui/sheet';
-import { Input } from '../ui/input';
 import { TaskInput } from '@/app/[locale]/(default)/task/_components/task-input';
 
 const TaskHeader: FC = () => {

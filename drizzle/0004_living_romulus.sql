@@ -1,0 +1,1 @@
+ALTER TABLE "task" ALTER COLUMN "weight" DROP NOT NULL;

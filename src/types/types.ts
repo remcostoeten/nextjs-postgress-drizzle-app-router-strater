@@ -18,10 +18,13 @@ export type LayoutProps = {
     children: React.ReactNode
 }
 
-export type TaskType = {
-    id: number;
-    title: string;
-    createdAt: Date;
-    isCompleted: boolean;
+  export type TaskType = {
+    id?: number;
+    title?: string;
+    date?: Date;
+    weight?: number;
+    tag?: string | null;
+    createdAt?: Date;
+    userId?: string;
+    isCompleted?: boolean;
   };
-  

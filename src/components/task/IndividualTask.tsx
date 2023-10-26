@@ -7,7 +7,7 @@ import { CalendarToday, Alarm, Person } from '@mui/icons-material';
 interface TodoItem {
     title: string;
     date: string;
-    notifications: number;
+    weight: number;
     tag?: string;
 }
 import React from "react";
@@ -18,12 +18,12 @@ export default function IndividualTask() {
         {
             title: 'Finish user onboarding',
             date: 'Tomorrow',
-            notifications: 1
+            weight: 1
         },
         {
             title: 'Solve the Dabble prioritisation issue',
             date: 'Jan 8, 2022',
-            notifications: 2,
+            weight: 2,
             tag: 'LaunchPad'
         }
     ];
@@ -38,7 +38,7 @@ export default function IndividualTask() {
                             <CalendarToday fontSize="small" />
                             <span>{todo.date}</span>
                             <Alarm fontSize="small" />
-                            <span>{todo.notifications}</span>
+                            <span>{todo.weight}</span>
                             {todo.tag && (
                                 <>
                                     <Person fontSize="small" />
