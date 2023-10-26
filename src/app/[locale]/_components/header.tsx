@@ -3,6 +3,7 @@ import type { FC, HTMLAttributes } from "react";
 
 import { LanguageSwitcher } from "./language-switcher";
 import { UserLogin } from "./user-login";
+import Link from "next/link";
 
 export const Header: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
   className,
@@ -17,6 +18,9 @@ export const Header: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
       {...props}
     >
       <LanguageSwitcher />
+      <nav><ul>
+        <li><Link href='task'>Task</Link></li>
+      </ul></nav>
       <UserLogin />
     </header>
   );
