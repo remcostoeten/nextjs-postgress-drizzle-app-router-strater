@@ -12,7 +12,7 @@
         stroke-dasharray: 1, 200;
         stroke-dashoffset: 0;
         stroke-linecap: round;
-        animation: dash4 1.5s ease-in-out infinite, rainbow 2s ease-in-out infinite;
+        animation: dash4 1.5s ease-in-out infinite, fadeColor 2s ease-in-out infinite;
     }
 
     @keyframes rotate4 {
@@ -34,6 +34,16 @@
 
         100% {
             stroke-dashoffset: -125px;
+        }
+    }
+
+    @keyframes fadeColor {
+        from {
+            stroke: hsl(214, 97%, 59%);
+        }
+
+        to {
+            stroke: hsl(214, 97%, 59%);
         }
     }
 

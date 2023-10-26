@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import type { FC } from "react";
 
@@ -15,8 +14,6 @@ export async function generateMetadata({
 }
 
 const HomePage: FC<LocaleRouteParams> = () => {
-  const t = useTranslations("home");
-
   return (
     <>
     </>

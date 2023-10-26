@@ -1,4 +1,5 @@
 'use client';
+import Toolbar from "@/components/task/Toolbar";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -7,7 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
+import { SkeletonFourBarsWSpinner } from "@/styles/components/loaders/MiniSpinner";
 import { trpc } from "@/trpc";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Alarm, CalendarToday, CheckCircleOutline, Delete, Edit, Person } from "@mui/icons-material";
@@ -15,7 +16,6 @@ import clsx from "clsx";
 import type { FC, HTMLAttributes } from "react";
 import { useState } from "react";
 import { Toaster, toast } from 'sonner';
-
 
 type TaskType = {
   id?: number;
@@ -27,11 +27,6 @@ type TaskType = {
   userId?: string;
   isCompleted?: boolean;
 };
-import { toast, Toaster } from 'sonner';
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
 
 export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
   const { data: tasks, isInitialLoading } = trpc.tasks.list.useQuery();
@@ -47,7 +42,6 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
   const [sortByDate, setSortByDate] = useState(false);
   const [sortByCompletion, setSortByCompletion] = useState(false);
 
-  // Sort tasks based on the selected sorting options
   let sortedTasks = tasks ?? [];
   if (sortByDate) {
     sortedTasks = [...sortedTasks].sort((a, b) => ((a.date?.getTime() || 0) - (b.date?.getTime() || 0)) as number);
@@ -57,7 +51,6 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
     sortedTasks = [...sortedTasks].sort((a, b) => (a.isCompleted ? -1 : 1) - (b.isCompleted ? -1 : 1));
     toast.success('sorted by completion');
   }
-
 
   const handleCompletionToggle = (taskId: number, isCompleted: boolean) => {
     updateCompletionStatus.mutate({ taskId, isCompleted }, {
@@ -76,7 +69,6 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
       },
     });
   };
-
 
   const handleEditOpen = (task: TaskType) => {
     setEditFormValues({ taskId: task.id || 0, title: task.title || '', tag: task.tag || '', isCompleted: task.isCompleted || false });
@@ -108,14 +100,13 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
 
   if (!isInitialLoading) {
     return (
-      <MiniSpinner />
+      <SkeletonFourBarsWSpinner />
     );
   }
 
   return (
     <>
       <Toaster />
-
       <div ref={parentRef} className={clsx("grid border-t", className)} {...props}>
         <div className="flex justify-between space-x-2 w-full mb-4">
           <Toolbar
@@ -129,7 +120,6 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
             }}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-
           />
         </div>
         {sortedTasks?.filter(task => task.title?.toLowerCase().includes(searchTerm.toLowerCase())).map((task: TaskType,) => (

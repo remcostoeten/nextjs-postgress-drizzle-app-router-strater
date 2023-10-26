@@ -18,7 +18,7 @@ const TaskHeader: FC = () => {
         <div className="flex flex-col  gap-4">
             <h2 className="text-xl font-bold">To-Do</h2>
             <Separator />
-            <div className="flex gap-4">
+            <div className="flex gap-4 mb-12">
                 <Popover>
                     <PopoverTrigger>
                         <span className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2'>

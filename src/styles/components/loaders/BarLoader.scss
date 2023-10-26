@@ -1,0 +1,14 @@
+.barloader {
+	width: 2em;
+	height: .66em;
+	border: .05em currentcolor solid;
+	border-radius: .1em;
+	background: linear-gradient(-60deg, transparent 0%, transparent 50%, currentcolor 50%, currentcolor 75%, transparent 75%, transparent);
+	background-size: 1em 2em;
+	background-position: 0 0;
+	animation: loader-42 10.8s infinite linear;
+}
+@keyframes loader-42 {
+	from { background-position: 0 0; }
+	to { background-position: -2em 0; }
+}

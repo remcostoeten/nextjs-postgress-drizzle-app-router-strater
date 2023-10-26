@@ -4,7 +4,6 @@ import { getTranslator } from "next-intl/server";
 import type { FC } from "react";
 
 import { AuthRequired } from "@/components/(drizzlestarter)/auth-required";
-import { HomeLink } from "@/components/(drizzlestarter)/home-link";
 import { ToDoInput } from "./_components/todo-input";
 import { ToDoList } from "./_components/todo-list";
 import { ToDoSigninFallback } from "./_components/todo-signin-fallback";
@@ -29,9 +28,6 @@ const ToDosPage: FC<LocaleRouteParams> = () => {
         <ToDoInput className="mb-4" />
         <ToDoList />
       </AuthRequired>
-      <div className="mt-8">
-        <HomeLink />
-      </div>
     </>
   );
 };
