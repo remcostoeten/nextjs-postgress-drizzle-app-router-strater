@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import type { FC } from "react";
 
-import { TextLink } from "@/components/(drizzlestarter)/text-link";
 import { LocaleRouteParams } from "@/types/types";
 
 export async function generateMetadata({
@@ -20,10 +19,6 @@ const HomePage: FC<LocaleRouteParams> = () => {
 
   return (
     <>
-      <h1 className="mb-8 text-2xl">{t("heading")}</h1>
-      <div>
-        <TextLink href="/todos">{t("todos.linkText")}</TextLink>
-      </div>
     </>
   );
 };

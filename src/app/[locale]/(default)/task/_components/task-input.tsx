@@ -6,9 +6,12 @@ import { useTranslations } from "next-intl";
 import { useRef, type ElementRef, type FC, type HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { addTaskInputSchema, type AddTaskInputData } from "@/schemas/tasks";
+import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
 import { useAddTask } from "../_hooks/use-add-task";
-import { ActionButton } from "@/components/(drizzlestarter)/action-button";
 
 export const TaskInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
   className,
@@ -19,7 +22,6 @@ export const TaskInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<AddTaskInputData>({
     resolver: zodResolver(addTaskInputSchema),
   });
@@ -33,48 +35,64 @@ export const TaskInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
     });
   };
 
+  if (isLoading) {
+    return (
+      <MiniSpinner />
+    );
+  }
+
   return (
     <form
       ref={formRef}
-      className={clsx("flex gap-4", className)}
+      className={clsx("grid gap-4", className)}
       onSubmit={handleSubmit(onSubmit)}
       {...props}
     >
-      <input
-        type="text"
-        placeholder={t("titlePlaceholder")}
-        className={clsx("flex-grow p-2 rounded border border-gray-300", {
-          "outline-2 outline-red-600": errors.title,
-        })}
-        {...register("title")}
-      />
-      <input
-        type="date"
-        placeholder={t("datePlaceholder")}
-        className={clsx("flex-grow p-2 rounded border border-gray-300", {
-          "outline-2 outline-red-600": errors.date,
-        })}
-        {...register("date")}
-      />
-      <input
-        type="number"
-        placeholder={t("notificationsPlaceholder")}
-        className={clsx("flex-grow p-2 rounded border border-gray-300", {
-          "outline-2 outline-red-600": errors.notifications,
-        })}
-        {...register("notifications")}
-      />
-      <input
-        type="text"
-        placeholder={t("tagPlaceholder")}
-        className={clsx("flex-grow p-2 rounded border border-gray-300", {
-          "outline-2 outline-red-600": errors.tag,
-        })}
-        {...register("tag")}
-      />
-      <ActionButton type="submit" disabled={isLoading}>
-        {t("submitButtonText")}
-      </ActionButton>
+      <div className="space-y-2">
+        <h4 className="font-medium leading-none">Task Details</h4>
+        <p className="text-sm text-muted-foreground">
+          Enter the details for the task
+        </p>
+      </div>
+      <div className="flex flex-col gap-1 it">
+        <Label htmlFor="title">Title</Label>
+        <Input
+          id="title"
+          type="text"
+          className="col-span-2 h-8"
+          {...register("title")}
+        />
+      </div>
+      <div className="flex flex-col gap-1 it">
+        <Label htmlFor="date">Date</Label>
+        <Input
+          id="date"
+          type="date"
+          className="col-span-2 h-8"
+          {...register("date")}
+        />
+      </div>
+      <div className="flex flex-col gap-1 it">
+        <Label htmlFor="notifications">Notifications</Label>
+        <Input
+          id="notifications"
+          type="number"
+          className="col-span-2 h-8"
+          {...register("notifications")}
+        />
+      </div>
+      <div className="flex flex-col gap-1 it">
+        <Label htmlFor="tag">Tag</Label>
+        <Input
+          id="tag"
+          type="text"
+          className="col-span-2 h-8"
+          {...register("tag")}
+        />
+      </div>
+      <Button variant="outline" type="submit" disabled={isLoading}>
+        Add todo
+      </Button>
     </form>
   );
 };

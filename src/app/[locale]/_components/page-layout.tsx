@@ -17,7 +17,7 @@ export const PageLayout: FC<PageLayoutProps> = async ({ children, header }) => {
 
   return (
     <html lang={locale}>
-      <body>
+      <body className="dark:bg-background dark:text-offwhite">
         <AuthProvider session={session}>
           <TrpcProvider>
             <NextIntlClientProvider locale={locale} messages={messages}>

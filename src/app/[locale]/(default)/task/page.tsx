@@ -11,7 +11,6 @@ export default function page() {
     <div className="container mx-auto flex flex-col gap-4">
       <h1 className="mb-8 text-2xl">{t("heading")}</h1>
       <AuthRequired fallback={<TaskSignInFallback />}>
-        <TaskInput className="mb-4" />
         <TaskList />
       </AuthRequired> 
       <div className="mt-8">
