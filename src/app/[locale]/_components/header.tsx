@@ -4,6 +4,7 @@ import type { FC, HTMLAttributes } from "react";
 import { LanguageSwitcher } from "./language-switcher";
 import { UserLogin } from "./user-login";
 import Link from "next/link";
+import ThemeToggle from "@/components/effects/ToggleTheme";
 
 export const Header: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
   className,
@@ -18,6 +19,7 @@ export const Header: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
       {...props}
     >
       <LanguageSwitcher />
+      <ThemeToggle />
       <nav><ul>
         <li><Link href='task'>Task</Link></li>
       </ul></nav>

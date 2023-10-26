@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CommandInput } from "../ui/command";
 import { Input } from "../ui/input";
 import { SearchSharp } from "@mui/icons-material";
 
