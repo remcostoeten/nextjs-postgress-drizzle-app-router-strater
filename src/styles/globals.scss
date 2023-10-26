@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './components/FullPageLoader.scss';
+// Variables
+@import './variables/variables.scss';
+@import './variables/responsive.scss';
+
+
+// Utilities
+@import './utils/utillity-classes.scss';
+@import './utils/animations.scss';
+@import './utils/keyframes.scss';
+@import './utils/mixins.scss';
+@import './utils/reset.scss';
+
+// Theme
+@import './theme/theme.scss';
+@import './theme/body.scss';
+
+// components
+@import './components/loaders.scss';
 
 
 @layer base {

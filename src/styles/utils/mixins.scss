@@ -1,0 +1,61 @@
+@mixin media($keys...) {
+	@each $key in $keys {
+		@media (min-width: map-get($breakpoints, $key)) {
+			@content;
+		}
+	}
+}
+
+@mixin below-desktop {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__l}) {
+		@content;
+	}
+}
+
+@mixin big-desktop {
+	@media (min-width: #{1920px}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{$screen__l}) {
+		@content;
+	}
+}
+
+@mixin above-mobile {
+	@media (min-width: #{$screen__m}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{$screen__m}) and (max-width: #{$screen__l - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__m - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-small {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__s - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-xs {
+	@media (min-width: #{$screen__xxs}) and (max-width: #{$screen__xs - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-xxs {
+	@media (max-width: #{$screen__xxs - 1px}) {
+		@content;
+	}
+}

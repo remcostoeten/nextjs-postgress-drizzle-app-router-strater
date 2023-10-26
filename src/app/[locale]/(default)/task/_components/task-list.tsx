@@ -26,6 +26,7 @@ import { toast, Toaster } from 'sonner';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
 
 export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
   const { data: tasks, isInitialLoading } = trpc.tasks.list.useQuery();
@@ -95,12 +96,9 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
     });
   };
 
-
   if (isInitialLoading) {
     return (
-      <div className="flex justify-center items-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
+      <MiniSpinner/>
     );
   }
 
