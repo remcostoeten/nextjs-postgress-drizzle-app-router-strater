@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
 import type { FC, PropsWithChildren } from "react";
+import { Analytics } from '@vercel/analytics/react';
 
 import "@/styles/globals.scss";
 import { Header } from "../_components/header";
@@ -41,6 +42,7 @@ const DefaultRootLayout: FC<DefaultRootLayoutProps> = ({ children }) => {
   return (
     <PageLayout header={<Header className="mb-8" />}>
       <main className="container mx-auto px-4">{children}</main>
+      <Analytics/>
     </PageLayout>
   );
 };
