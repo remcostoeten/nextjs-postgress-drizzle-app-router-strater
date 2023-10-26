@@ -1,15 +1,20 @@
 'use client';
-import type { FC, HTMLAttributes } from "react";
-import { trpc } from "@/trpc";
-import clsx from "clsx";
-import { Alarm, CalendarToday, Person, CheckCircleOutline, Delete, Edit } from "@mui/icons-material";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
+import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
+import { trpc } from "@/trpc";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { Alarm, CalendarToday, CheckCircleOutline, Delete, Edit, Person } from "@mui/icons-material";
+import clsx from "clsx";
+import type { FC, HTMLAttributes } from "react";
+import { useState } from "react";
+import { Toaster, toast } from 'sonner';
 
 
 type TaskType = {
@@ -27,7 +32,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
-import Toolbar from "@/components/task/Toolbar";
 
 export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
   const { data: tasks, isInitialLoading } = trpc.tasks.list.useQuery();
@@ -102,7 +106,7 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
     });
   };
 
-  if (isInitialLoading) {
+  if (!isInitialLoading) {
     return (
       <MiniSpinner />
     );

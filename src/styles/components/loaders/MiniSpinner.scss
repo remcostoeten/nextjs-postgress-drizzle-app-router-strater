@@ -1,39 +1,50 @@
 .mini-spinner {
-svg {
-    width: 3.25em;
-    transform-origin: center;
-    animation: rotate4 2s linear infinite;
-   }
-   
-   circle {
-    fill: none;
-    stroke: hsl(214, 97%, 59%);
-    stroke-width: 2;
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-    stroke-linecap: round;
-    animation: dash4 1.5s ease-in-out infinite;
-   }
-   
-   @keyframes rotate4 {
-    100% {
-     transform: rotate(360deg);
+    svg {
+        width: 2.25em;
+        transform-origin: center;
+        animation: rotate4 2s linear infinite;
     }
-   }
-   
-   @keyframes dash4 {
-    0% {
-     stroke-dasharray: 1, 200;
-     stroke-dashoffset: 0;
+
+    circle {
+        fill: none;
+        stroke: hsl(214, 97%, 59%);
+        stroke-width: 2;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        animation: dash4 1.5s ease-in-out infinite, rainbow 2s ease-in-out infinite;
     }
-   
-    50% {
-     stroke-dasharray: 90, 200;
-     stroke-dashoffset: -35px;
+
+    @keyframes rotate4 {
+        100% {
+            transform: rotate(360deg);
+        }
     }
-   
-    100% {
-     stroke-dashoffset: -125px;
+
+    @keyframes dash4 {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+
+        50% {
+            stroke-dasharray: 90, 200;
+            stroke-dashoffset: -35px;
+        }
+
+        100% {
+            stroke-dashoffset: -125px;
+        }
     }
-   }
+
+    @keyframes rainbow {
+        0% { stroke: red; }
+        14% { stroke: orange; }
+        28% { stroke: yellow; }
+        42% { stroke: green; }
+        57% { stroke: blue; }
+        71% { stroke: indigo; }
+        85% { stroke: violet; }
+        100% { stroke: red; }
+    }
 }
