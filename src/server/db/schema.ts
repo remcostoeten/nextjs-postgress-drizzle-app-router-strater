@@ -1,6 +1,7 @@
 import type { AdapterAccount } from "@auth/core/adapters";
 import { relations, type InferModel } from "drizzle-orm";
 import {
+  boolean,
   integer,
   pgTable,
   primaryKey,
@@ -98,6 +99,7 @@ export const tasks = pgTable("task", {
   createdAt: timestamp("createdAt", { withTimezone: true })
     .notNull()
     .defaultNow(),
+  isCompleted: boolean("isCompleted").notNull().default(false), 
 });
 
 export const tasksRelations = relations(tasks, ({ one }) => ({
