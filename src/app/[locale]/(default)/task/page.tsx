@@ -8,7 +8,7 @@ import  { SkeletonFourBarsWSpinner } from '@/styles/components/loaders/MiniSpinn
 export default function page() {
   const t = useTranslations("tasks");
   return <>
-    <div className="container mt-8 flex gap-4mx-auto flex flex-col gap-4">
+    <div className="container mt-8 gap-4mx-auto flex flex-col gap-4">
       <AuthRequired fallback={<TaskSignInFallback />}>
         <Suspense fallback={<> <SkeletonFourBarsWSpinner /></>}>
           <TaskList />
