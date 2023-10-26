@@ -1,13 +1,15 @@
 {
-  "name": "next-app-router-template",
+  "name": "Remco Stoeten - Todo app",
   "version": "0.0.0",
-  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "clean" : "rm -rf .next && rm -rf node_modules && bun i && bun run dev",
+    "rebuild" : "rm -rf .next && rm -rf node_modules && bun i && bun run build",
+    "db": "drizzle-kit generate:pg && node ./src/server/db/migrate.mjs",
     "db:generate": "drizzle-kit generate:pg",
     "db:migrate": "node ./src/server/db/migrate.mjs",
     "db:run": "docker run --name postgres --rm -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=unsafeLocalhostPassword -e PGDATA=/var/lib/postgresql/data/pgdata -v /tmp:/var/lib/postgresql/data -p 5432:5432 -it postgres:16rc1-alpine"
@@ -17,6 +19,7 @@
     "@auth/drizzle-adapter": "0.3.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@formkit/auto-animate": "^0.8.0",
     "@hookform/resolvers": "3.3.1",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.14.15",

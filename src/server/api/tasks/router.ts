@@ -2,21 +2,30 @@ import { desc, eq } from "drizzle-orm";
 import "server-only";
 import { db } from "@/server/db/db";
 import { tasks } from "@/server/db/schema";
+
 import { protectedProcedure, router } from "@/server/trpc";
 import { addTaskInputSchema } from "@/schemas/tasks";
 import { z } from "zod"; // Import z from Zod for defining input schema
 import { and } from "drizzle-orm";
 
-// Define the input schema for the updateCompletionStatus mutation
 const updateCompletionStatusInputSchema = z.object({
     taskId: z.number(),
     isCompleted: z.boolean(),
 });
 
-// Define the input schema for the delete mutation
 const deleteTaskInputSchema = z.object({
     taskId: z.number(),
 });
+
+const editTaskInputSchema = z.object({
+    taskId: z.number(),
+    title: z.string().optional(),
+    date: z.string().optional(),
+    notifications: z.array(z.string()).optional(),
+    tag: z.string().optional(),
+    isCompleted: z.boolean().optional(),
+});
+
 
 export const tasksRouter = router({
     list: protectedProcedure.query(async ({ ctx: { session } }) => {
@@ -70,6 +79,26 @@ export const tasksRouter = router({
             return {
                 success: true,
                 message: 'Task deleted successfully',
+            };
+        }),
+    edit: protectedProcedure
+        .input(editTaskInputSchema)
+        .mutation(async ({ input, ctx: { session } }) => {
+            const { taskId, ...rest } = input;
+            await db
+                .update(tasks)
+                // @ts-ignore
+                .set({ ...rest })
+                .where(
+                    and(
+                        eq(tasks.id, taskId),
+                        eq(tasks.userId, session.user.id)
+                    )
+                )
+                .execute();
+            return {
+                success: true,
+                message: 'Task edited successfully',
             };
         }),
 });
