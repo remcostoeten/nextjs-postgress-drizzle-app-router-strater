@@ -4,7 +4,6 @@ import GitHubProvider from "next-auth/providers/github";
 import "server-only";
 
 import { signInPagePath } from "@/auth";
-import { env } from "@/env.mjs";
 import { defaultLocale } from "@/i18n";
 import { db } from "./db/db";
 
@@ -13,8 +12,8 @@ export const authOptions: AuthOptions = {
   adapter: DrizzleAdapter(db) as AuthOptions["adapter"],
   providers: [
     GitHubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
   pages: {

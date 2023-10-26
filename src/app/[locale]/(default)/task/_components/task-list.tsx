@@ -13,7 +13,7 @@ type TaskType = {
   notifications?: number;
   tag?: string | null;
   createdAt?: Date;
-  userId?: string;completed: boolean; 
+  userId?: string;
 };
 
 export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
