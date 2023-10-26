@@ -27,6 +27,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
+import Toolbar from "@/components/task/Toolbar";
 
 export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
   const { data: tasks, isInitialLoading } = trpc.tasks.list.useQuery();
@@ -37,12 +38,23 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
   const [editFormOpen, setEditFormOpen] = useState(false);
   const [editFormValues, setEditFormValues] = useState({ taskId: 0, title: '', tag: '', isCompleted: false });
   const [parentRef] = useAutoAnimate();
+  const [searchTerm, setSearchTerm] = useState('');
 
-  toast('My toast', {
-    className: 'my-classname',
-    description: 'My description',
-    duration: 5000,
-  });
+  const [sortByDate, setSortByDate] = useState(false);
+  const [sortByCompletion, setSortByCompletion] = useState(false);
+
+  // Sort tasks based on the selected sorting options
+  let sortedTasks = tasks ?? [];
+  if (sortByDate) {
+    sortedTasks = [...sortedTasks].sort((a, b) => ((a.date?.getTime() || 0) - (b.date?.getTime() || 0)) as number);
+    toast.success('sorted by date');
+  }
+  if (sortByCompletion) {
+    sortedTasks = [...sortedTasks].sort((a, b) => (a.isCompleted ? -1 : 1) - (b.isCompleted ? -1 : 1));
+    toast.success('sorted by completion');
+  }
+
+
   const handleCompletionToggle = (taskId: number, isCompleted: boolean) => {
     updateCompletionStatus.mutate({ taskId, isCompleted }, {
       onSuccess: () => {
@@ -71,12 +83,6 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
     setEditFormOpen(false);
   };
 
-  // const handleEditSubmit = () => {
-  //   handleEdit(editFormValues.taskId, editFormValues.title, editFormValues.tag, editFormValues.isCompleted);
-  //   handleEditClose();
-  // };
-
-
   const handleEditSubmit = () => {
     editTask.mutate({
       taskId: editFormValues.taskId,
@@ -98,15 +104,31 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
 
   if (isInitialLoading) {
     return (
-      <MiniSpinner/>
+      <MiniSpinner />
     );
   }
 
   return (
     <>
       <Toaster />
+
       <div ref={parentRef} className={clsx("grid border-t", className)} {...props}>
-        {tasks?.map((task: TaskType,) => (
+        <div className="flex justify-between space-x-2 w-full mb-4">
+          <Toolbar
+            onSortDate={() => {
+              setSortByDate(!sortByDate);
+              setSortByCompletion(false);
+            }}
+            onSortChecked={() => {
+              setSortByCompletion(!sortByCompletion);
+              setSortByDate(false);
+            }}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+
+          />
+        </div>
+        {sortedTasks?.filter(task => task.title?.toLowerCase().includes(searchTerm.toLowerCase())).map((task: TaskType,) => (
           <div key={task.id} className="border-l border-r border-b p-4 flex justify-between items-center space-x-2">
             <div>
               <h2 className={`text-lg ${task.isCompleted ? 'line-through' : ''}`}>{task.title}</h2>
