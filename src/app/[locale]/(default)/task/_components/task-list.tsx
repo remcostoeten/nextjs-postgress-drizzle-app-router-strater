@@ -18,7 +18,9 @@ import type { FC, HTMLAttributes } from "react";
 import { useState } from "react";
 import { Toaster, toast } from 'sonner';
 
-export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ className, ...props }) => {
+interface TaskListProps extends Omit<HTMLAttributes<HTMLElement>, "children"> { }
+
+export const TaskList: FC<TaskListProps> = ({ className, ...props }) => {
   const { data: tasks, isInitialLoading } = trpc.tasks.list.useQuery();
   const utils = trpc.useContext();
   const updateCompletionStatus = trpc.tasks.updateCompletionStatus.useMutation();
@@ -31,6 +33,7 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
 
   const [sortByDate, setSortByDate] = useState(false);
   const [sortByCompletion, setSortByCompletion] = useState(false);
+
 
   let sortedTasks = tasks ?? [];
   if (sortByDate) {
@@ -85,8 +88,7 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
         toast.error('Error editing task');
       },
     });
-  };
-
+  }
   if (isInitialLoading) {
     return (
       <SkeletonFourBarsWSpinner />
@@ -111,13 +113,13 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
             value={searchTerm}
           />
         </div>
-        {sortedTasks?.filter(task => task.title?.toLowerCase().includes(searchTerm.toLowerCase())).map((task: TaskType,) => (
+        {sortedTasks?.filter(task => task.title?.toLowerCase().includes(searchTerm.toLowerCase())).map((task: any) => (
           <div key={task.id} className="border-l border-r border-b p-4 flex justify-between items-center space-x-2">
             <div>
               <h2 className={`text-lg ${task.isCompleted ? 'line-through' : ''}`}>{task.title}</h2>
               <div className="flex items-center space-x-2">
                 <CalendarToday fontSize="small" />
-                <span>{task.date?.toLocaleDateString()}</span>
+                <span>{task.date ? task.date.toLocaleDateString() : ''}</span>
                 <Alarm fontSize="small" />
                 <span>{task.weight}</span>
                 <Person fontSize="small" />
@@ -142,6 +144,7 @@ export const TaskList: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({ cl
             </div>
           </div>
         ))}
+
         {editFormOpen && (
           <><Popover>
             <PopoverTrigger>

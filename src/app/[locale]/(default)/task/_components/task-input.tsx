@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { useRef, type ElementRef, type FC, type HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 
@@ -10,14 +9,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { addTaskInputSchema, type AddTaskInputData } from "@/schemas/tasks";
-import MiniSpinner from "@/styles/components/loaders/MiniSpinner";
+import { SkeletonFourBarsWSpinner } from "@/styles/components/loaders/MiniSpinner";
 import { useAddTask } from "../_hooks/use-add-task";
 
 export const TaskInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
   className,
   ...props
 }) => {
-  const t = useTranslations("tasks.input");
   const formRef = useRef<ElementRef<"form">>(null);
   const {
     register,
@@ -37,7 +35,7 @@ export const TaskInput: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
 
   if (isLoading) {
     return (
-      <MiniSpinner />
+      <SkeletonFourBarsWSpinner />
     );
   }
 
