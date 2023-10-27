@@ -2,8 +2,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import type { AuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import "server-only";
-
+import DiscordProvider from "next-auth/providers/discord";
 import { signInPagePath } from "@/auth";
 import { defaultLocale } from "@/i18n";
 import { db } from "./db/db";
@@ -19,6 +18,10 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET_ID!,
+    }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID!,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
     }),
   ],
   pages: {
