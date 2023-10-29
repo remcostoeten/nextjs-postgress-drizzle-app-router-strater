@@ -21,12 +21,13 @@ model Todo {
   order     Int      @default(0)
 }
 
-model Task {
+model Todo {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String
   weight    Int      @default(0)
-  Category  String
+  category  String
   done      Boolean  @default(false)
+  date      DateTime?
 }

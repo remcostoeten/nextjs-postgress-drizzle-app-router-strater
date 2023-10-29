@@ -19,7 +19,7 @@ export default async function IndexPage() {
       <ul className="flex h-full w-full flex-col overflow-hidden bg-popover text-popover-foreground rounded-lg border shadow-md">
         {
           todos?.map((todo) => (
-            <TodoList key={todo?.id} todo={todo} />        
+            <TodoList key={todo?.id} todo={todo} />
           ))
         }
       </ul>

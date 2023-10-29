@@ -2,17 +2,17 @@ import prisma from "./prisma";
 
 export async function getTodos() {
   try {
-    const todos = await prisma.todo.findMany()
+    const todos = await prisma.task.findMany()
     return { todos }
   } catch (error) {
     return { error }
   }
 }
 
-export async function createTodo(title: string) {
+export async function createTodo(title: string, weight: number, category: string) {
   try {
-    const todo = await prisma.todo.create({ data: { title } })
-    return { todo }
+    const task = await prisma.task.create({ data: { title, weight, Category: category } })
+    return { task }
   } catch (error) {
     return { error }
   }
@@ -20,8 +20,8 @@ export async function createTodo(title: string) {
 
 export async function updateTodoStatus(id: number, done: boolean) {
   try {
-    const todo = await prisma.todo.update({ where: { id }, data: { done } })
-    return { todo }
+    const task = await prisma.task.update({ where: { id }, data: { done } })
+    return { task }
   } catch (error) {
     return { error }
   }
@@ -29,10 +29,9 @@ export async function updateTodoStatus(id: number, done: boolean) {
 
 export async function deleteTodoById(id: number) {
   try {
-    const todo = await prisma.todo.delete({ where: { id } })
-    return { todo }
+    const task = await prisma.task.delete({ where: { id } })
+    return { task }
   } catch (error) {
     return { error }
   }
 }
-
