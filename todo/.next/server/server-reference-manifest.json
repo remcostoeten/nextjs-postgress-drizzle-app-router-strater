@@ -1,0 +1,37 @@
+{
+  "node": {
+    "a2ebf991def5b0a7184757c3c585f1a39a751245": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fremcostoeten%2Fsites%2Fnextjs-postgress-drizzle-app-router-strater%2Ftodo%2Fapp%2F_action.ts%22%2C%5B%22deleteTodoAction%22%2C%22c%22%2C%22updateTodoStatusAction%22%2C%22createTodoAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    },
+    "0b121fe9fa7a2bc5a07feeb6fb1df3f8b1195989": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fremcostoeten%2Fsites%2Fnextjs-postgress-drizzle-app-router-strater%2Ftodo%2Fapp%2F_action.ts%22%2C%5B%22deleteTodoAction%22%2C%22c%22%2C%22updateTodoStatusAction%22%2C%22createTodoAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    },
+    "fe15360a8309e9f7318996743edd3a2f890d9d94": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fremcostoeten%2Fsites%2Fnextjs-postgress-drizzle-app-router-strater%2Ftodo%2Fapp%2F_action.ts%22%2C%5B%22deleteTodoAction%22%2C%22c%22%2C%22updateTodoStatusAction%22%2C%22createTodoAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    },
+    "7a4faecc67c00bd309948c3beaefbcf9d0da6005": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fremcostoeten%2Fsites%2Fnextjs-postgress-drizzle-app-router-strater%2Ftodo%2Fapp%2F_action.ts%22%2C%5B%22deleteTodoAction%22%2C%22c%22%2C%22updateTodoStatusAction%22%2C%22createTodoAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    }
+  },
+  "edge": {}
+}

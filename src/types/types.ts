@@ -18,7 +18,7 @@ export type LayoutProps = {
     children: React.ReactNode
 }
 
-  export type TaskType = {
+  export type TodoTypes = {
     id?: number;
     title?: string;
     date?: Date;
